@@ -1,0 +1,99 @@
+# vtrigger
+
+Codebase health scanner. Finds real problems in source code across 20 languages.
+
+## What it does
+
+vtrigger scans codebases for: dead code (unused functions, classes, exports, variables), unused imports, duplicated functions (3+ structural copies), hardcoded secrets (API keys, tokens, passwords), circular import dependencies, and oversized files/functions/classes.
+
+It does not score code. It does not flag style issues. It only reports things that are genuinely dead, broken, duplicated, or dangerous.
+
+## Install
+
+```
+pip install vtrigger
+```
+
+## Usage
+
+Scan a project:
+```
+vtrigger scan .
+vtrigger scan /path/to/project
+```
+
+Scan only files changed since main:
+```
+vtrigger review .
+vtrigger review . --base develop
+```
+
+Walk findings one at a time:
+```
+vtrigger next
+vtrigger resolve
+vtrigger skip
+```
+
+Auto-fix unused imports:
+```
+vtrigger fix .
+vtrigger fix . --dry-run
+```
+
+JSON output for programmatic use:
+```
+vtrigger scan . --json
+```
+
+List and filter findings:
+```
+vtrigger list --pending
+vtrigger list --detector dead_code
+vtrigger stats
+```
+
+Initialize config:
+```
+vtrigger init .
+```
+
+## Detectors
+
+- unused_imports: imports never referenced in the file
+- dead_code: functions, classes, exports, variables with zero references across all files
+- duplication: functions with identical normalized structure (3+ copies)
+- secrets: hardcoded API keys, tokens, passwords, private keys in source files
+- cycles: circular import chains between files
+- size: files over 500 lines, functions over 100 lines, classes with 20+ methods
+
+## Languages
+
+Python, JavaScript, TypeScript, JSX, TSX, Solidity, Go, Rust, Java, C, C++, Ruby, PHP, Swift, Kotlin, Dart, Lua, Elixir, Zig, Shell/Bash/Zsh, Nim, Scala, Objective-C, Erlang.
+
+## Config
+
+Config lives at `.vtrigger/config.yaml` inside the scanned project. Run `vtrigger init` to create it.
+
+Available options:
+- ignore: additional glob patterns to skip
+- thresholds.max_file_lines (default 500)
+- thresholds.max_function_lines (default 100)
+- thresholds.max_class_methods (default 20)
+- thresholds.duplication_min_copies (default 3)
+- detectors.disabled: list of detector names to skip
+- allowlist: per-detector glob patterns to skip
+
+## State
+
+Findings persist in `.vtrigger/` inside the project. Resolve/skip decisions carry over between scans. Add `.vtrigger/` to `.gitignore` (vtrigger does this automatically).
+
+## Key flags
+
+- --json: output findings as JSON (scan, review)
+- --fresh: ignore parse cache, reparse all files (scan, review)
+- --dry-run: preview changes without writing (fix)
+- --detector NAME: filter by detector (next, list)
+- --base BRANCH: diff against a specific branch (review)
+- --pending: show only unresolved findings (list)
+- --all: review all files, not just changed (review)
